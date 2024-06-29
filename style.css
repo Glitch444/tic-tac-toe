@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game-container {
+    width: 900px;
+    margin: 0 auto;
+
+
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    grid-template-rows: repeat(3, 300px);
+
+    border: 1px solid black
+}
+
+div {
+    border: 1px solid red
+}
+
+
+
+
+
+.score-board {
+    display: flex;
+    gap: 50px;
+}
+
+.cross {
+    background-image: url("./cross-svgrepo-com\ \(1\).svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.circle {
+    background-image: url("./circle-svgrepo-com.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
