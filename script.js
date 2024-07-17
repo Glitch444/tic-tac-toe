@@ -8,40 +8,83 @@ const box6 = document.getElementById("6");
 const box7 = document.getElementById("7");
 const box8 = document.getElementById("8");
 const box9 = document.getElementById("9");
-const newRoundBtn = document.getElementById("new-round-btn");
 
+const newRoundBtn = document.getElementById("new-round-btn");
+const resetScoresBtn = document.getElementById("reset-scores-btn");
+
+const playerOScore = document.getElementById("p1ayer-O-score");
+const playerXScore = document.getElementById("player-X-score");
+
+
+const OCheckbox = document.getElementById("O");
+const XCheckbox = document.getElementById("X");
+
+
+
+let OScore = 0;
+let XScore = 0;
 
 let turn = true;
 
 
-
-
 gameBox.forEach(function (box) {
-    box.addEventListener("click", addSymbol); 
+    box.addEventListener("click", draw);      
+});
+function draw (event) {
+    if (event.target.classList.contains("circle") || event.target.classList.contains("cross")){
+        return;
+    }
+    if (turn) {
+        event.target.classList.add("circle")
+        turn = false;
         
-        function addSymbol(event) {
-            if (event.target.classList.contains("circle") || event.target.classList.contains("cross")){
-                return;
-            }
-            if (turn) {
-                event.target.classList.add("circle")
-                turn = false;
-                
-            } else {
-                event.target.classList.add("cross");
-                turn= true;
-            }
-            checkWinner();
-        }
+    } else {
+        event.target.classList.add("cross");
+        turn= true;
+    }
+    checkWinner();
+}
+
+
+OCheckbox.addEventListener("change", function () {
+    if (this.checked){
+        turn = true;
+    }
 });
 
-newRoundBtn.addEventListener("click", newRound);
+XCheckbox.addEventListener("change", function () {
+    if(this.checked) {
+        turn = false;
+    }
+});
 
+
+
+
+
+
+
+newRoundBtn.addEventListener("click", newRound);
 function newRound () {
     gameBox.forEach(function (box) {
         box.classList = "game-box";
-    })
+    });
+    OCheckbox.checked = false;
+    XCheckbox.checked = false;
 }
+
+
+resetScoresBtn.addEventListener("click", resetScores);
+function resetScores () {
+        OScore = 0;
+        XScore = 0;
+        playerOScore.textContent = `PLAYER O SCORE = ${OScore}`;
+        playerXScore.textContent = `PLAYER X SCORE = ${XScore}`;
+}
+
+
+
+
 
 function checkWinner() {
     const circles = {
@@ -77,7 +120,9 @@ function checkWinner() {
         (circles.c1 && circles.c5 && circles.c9) ||
         (circles.c3 && circles.c5 && circles.c7)) 
         {
-        console.log("O WINS!");
+        alert("O WINS! Allow X to go first in new round");
+        OScore +=1;
+        playerOScore.textContent = `PLAYER O SCORE = ${OScore}`;
     } 
     
     else if (
@@ -90,6 +135,8 @@ function checkWinner() {
         (crosses.x1 && crosses.x5 && crosses.x9) ||
         (crosses.x3 && crosses.x5 && crosses.x7)) 
         {
-        console.log("X WINS!");
+        alert("X WINS! Allow O to go first in new round");
+        XScore +=1;
+        playerXScore.textContent = `PLAYER X SCORE = ${XScore}`;
     }
 }

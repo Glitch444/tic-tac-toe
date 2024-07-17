@@ -10,10 +10,20 @@
 <body>
     <h1>TIC TAC TOE</h1>
 
-    <div class="score-board">
-        <p>PLAYER 1 SCORE = 0</p>
-        <p>PLAYER 2 SCORE = 0</p>
+    <div class="who-goes-first">
+        <p>Who goes first?</p>
 
+        <input type="checkbox" id="O">
+        <label for="O">O</label>
+
+        <input type="checkbox" id="X">
+        <label for="X">X</label>
+    </div>
+
+    <div class="score-board">
+        <p id="p1ayer-O-score">PLAYER O SCORE = 0</p>
+        <p id="player-X-score">PLAYER X SCORE = 0</p>
+        <button id="reset-scores-btn">Reset scores</button>
     </div>
 
     <button id="new-round-btn">NEW ROUND</button>
