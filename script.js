@@ -1,3 +1,4 @@
+const gameContainer = document.querySelector(".game-container")
 const gameBox = document.querySelectorAll(".game-box");
 const box1 = document.getElementById("1");
 const box2 = document.getElementById("2");
@@ -9,17 +10,24 @@ const box7 = document.getElementById("7");
 const box8 = document.getElementById("8");
 const box9 = document.getElementById("9");
 
+const gameMode = document.querySelector(".game-mode")
+const vsPlayerBtn = document.getElementById("vs-player");
+const vsComputerBtn = document.getElementById("vs-computer");
+
+
+const scoreBoard = document.querySelector(".score-board")
+const playerOScore = document.getElementById("p1ayer-O-score");
+const playerXScore = document.getElementById("player-X-score");
 const newRoundBtn = document.getElementById("new-round-btn");
 const resetScoresBtn = document.getElementById("reset-scores-btn");
 
-const playerOScore = document.getElementById("p1ayer-O-score");
-const playerXScore = document.getElementById("player-X-score");
-
-
+const whoGoesFirstContainer = document.querySelector(".who-goes-first");
 const OCheckbox = document.getElementById("O");
 const XCheckbox = document.getElementById("X");
 
-
+gameContainer.style.display = "none";
+scoreBoard.style.display = "none";
+whoGoesFirstContainer.style.display = "none"
 
 let OScore = 0;
 let XScore = 0;
@@ -27,6 +35,18 @@ let XScore = 0;
 let turn = true;
 
 
+
+// game mode
+vsPlayerBtn.addEventListener("click", () => {
+    gameContainer.style.display = "grid";
+    scoreBoard.style.display = "flex";
+    whoGoesFirstContainer.style.display = "flex"
+    gameMode.style.display = "none"
+});
+
+
+
+// game logic
 gameBox.forEach(function (box) {
     box.addEventListener("click", draw);      
 });
@@ -40,7 +60,7 @@ function draw (event) {
         
     } else {
         event.target.classList.add("cross");
-        turn= true;
+        turn = true;
     }
     checkWinner();
 }
@@ -60,10 +80,7 @@ XCheckbox.addEventListener("change", function () {
 
 
 
-
-
-
-
+// resetting game options
 newRoundBtn.addEventListener("click", newRound);
 function newRound () {
     gameBox.forEach(function (box) {
@@ -78,14 +95,14 @@ resetScoresBtn.addEventListener("click", resetScores);
 function resetScores () {
         OScore = 0;
         XScore = 0;
-        playerOScore.textContent = `PLAYER O SCORE = ${OScore}`;
-        playerXScore.textContent = `PLAYER X SCORE = ${XScore}`;
+        playerOScore.textContent = `O SCORE = ${OScore}`;
+        playerXScore.textContent = `X SCORE = ${XScore}`;
 }
 
 
 
 
-
+// game logic
 function checkWinner() {
     const circles = {
         c1: box1.classList.contains("circle"),
@@ -120,9 +137,17 @@ function checkWinner() {
         (circles.c1 && circles.c5 && circles.c9) ||
         (circles.c3 && circles.c5 && circles.c7)) 
         {
-        alert("O WINS! Allow X to go first in new round");
+            
+        setTimeout( () => {
+            alert("O WINS! Allow X to go first in new round")
+        },500);
+
         OScore +=1;
         playerOScore.textContent = `PLAYER O SCORE = ${OScore}`;
+
+        gameBox.forEach(function (box) {
+            box.removeEventListener("click", draw);
+        });
     } 
     
     else if (
@@ -135,8 +160,41 @@ function checkWinner() {
         (crosses.x1 && crosses.x5 && crosses.x9) ||
         (crosses.x3 && crosses.x5 && crosses.x7)) 
         {
-        alert("X WINS! Allow O to go first in new round");
+        
+        setTimeout( () => {
+            alert("X WINS! Allow O to go first in new round");
+        }, 500);
+
         XScore +=1;
         playerXScore.textContent = `PLAYER X SCORE = ${XScore}`;
+
+        gameBox.forEach(function (box) {
+            box.removeEventListener("click", draw);
+        });
+    }
+}
+
+
+// using modl to display pop-up message
+const modal = document.getElementById("myModal");
+
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+vsComputerBtn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
     }
 }

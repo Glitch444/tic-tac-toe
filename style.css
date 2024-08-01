@@ -1,33 +1,139 @@
+:root{
+    --dark: #0b3532;
+    --medium: #156a63;
+    --light: #ecfbfa;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 24px;
 }
 
+
+
+
+#everything {
+    background-color: var(--light);
+
+    max-width: 1000px;
+    margin: auto;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 4rem;
+    color: white;
+    text-align: center;
+    background-color: var(--dark);
+    
+    padding: 50px 0px;
+}
+
+
+.game-mode {
+    color: white;
+    text-align: center;
+    background-color: var(--medium); 
+
+    padding-bottom: 50px;
+}
+
+.game-mode p {
+    font-size: 2.5rem;
+    padding: 20px 0px;
+}
+
+.game-mode button {
+    font-size: 1.5rem;
+    background-color: hsl(0, 0%, 84%);
+    border: 10px solid hsl(0, 0%, 84%);
+
+    margin: 0 20px;
+    padding: 20px 40px;
+}
+.game-mode button:nth-of-type(1) {
+    margin-bottom: 40px;
+}
+
+.game-mode button:hover{
+    border: 10px solid var(--light);
+}
+
+
+
+
+.who-goes-first,
+.score-board,
 .game-container {
-    width: 900px;
-    margin: 0 auto;
-
-
-    display: grid;
-    grid-template-columns: repeat(3, 300px);
-    grid-template-rows: repeat(3, 300px);
-
-    border: 1px solid black
-}
-
-div {
-    border: 1px solid red
+    padding: 10px 40px;
 }
 
 
 
+.who-goes-first {
+    gap: 50px;
+}
+
+input[type="checkbox"] {
+    /* Hide default checkbox */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: 40px;
+    height: 15px;
+    border: 2px solid var(--medium);
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: white
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--medium)
+}
 
 
 .score-board {
     display: flex;
+    justify-items: center;
+    flex-wrap: wrap;
     gap: 50px;
 }
+
+.score-board button {
+    background-color: hsl(0, 0%, 84%);
+    border: 10px solid hsl(0, 0%, 84%);
+    border-radius: 4px;
+    padding: 10px 20px;
+}
+
+.score-board button:hover {
+    border: 10px solid var(--medium);
+}
+
+
+
+.game-container {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+    grid-template-rows: repeat(3, minmax(150px, 1fr));
+}
+
+.game-box {
+    border: 2px solid var(--medium)
+}
+
+
 
 .cross {
     background-image: url("./cross-svgrepo-com\ \(1\).svg");
@@ -41,4 +147,46 @@ div {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+}
+
+
+
+/* using modal to display pop-up message */
+
+/* The Modal (background) */
+.modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

@@ -8,38 +8,65 @@
     <script defer src="./script.js"></script>
 </head>
 <body>
-    <h1>TIC TAC TOE</h1>
+    <div id="everything">
 
-    <div class="who-goes-first">
-        <p>Who goes first?</p>
+        <h1>TIC TAC TOE</h1>
 
-        <input type="checkbox" id="O">
-        <label for="O">O</label>
+        <div class="game-mode">
+            <p>Select game mode</p>
 
-        <input type="checkbox" id="X">
-        <label for="X">X</label>
-    </div>
+            <button id="vs-player" >player vs player</button>
+            <button id="vs-computer" >player vs computer</button>
+        </div>   
 
-    <div class="score-board">
-        <p id="p1ayer-O-score">PLAYER O SCORE = 0</p>
-        <p id="player-X-score">PLAYER X SCORE = 0</p>
-        <button id="reset-scores-btn">Reset scores</button>
-    </div>
+        <div class="who-goes-first">
+            <p>Who goes first?</p>
 
-    <button id="new-round-btn">NEW ROUND</button>
-    
-        <div class="game-container">
-            <div id="1" class="game-box">1</div>
-            <div id="2" class="game-box">2</div>
-            <div id="3" class="game-box">3</div>
-            <div id="4" class="game-box">4</div>
-            <div id="5" class="game-box">5</div>
-            <div id="6" class="game-box">6</div>
-            <div id="7" class="game-box">7</div>
-            <div id="8" class="game-box">8</div>
-            <div id="9" class="game-box">9</div>
+            <div>
+                <input type="checkbox" id="O">
+                <label for="O">O</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="X">
+                <label for="X">X</label>
+            </div>
         </div>
-   
+
+
+        <div class="score-board">
+            <div>
+                <p id="p1ayer-O-score">O SCORE = 0</p>
+                <p id="player-X-score">X SCORE = 0</p>
+            </div>
+
+            <button id="new-round-btn">NEW ROUND</button>
+            <button id="reset-scores-btn">RESET SCORES</button>
+        </div>
+
+        
+        
+        <div class="game-container">
+            <div id="1" class="game-box"></div>
+            <div id="2" class="game-box"></div>
+            <div id="3" class="game-box"></div>
+            <div id="4" class="game-box"></div>
+            <div id="5" class="game-box"></div>
+            <div id="6" class="game-box"></div>
+            <div id="7" class="game-box"></div>
+            <div id="8" class="game-box"></div>
+            <div id="9" class="game-box"></div>
+        </div>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>This game mode is comming soon! please select another game mode!</p>
+            </div>
+        </div>
+   </div>
     
 </body>
 </html>
